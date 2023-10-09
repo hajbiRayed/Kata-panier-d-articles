@@ -1,0 +1,33 @@
+.cart-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.cart-container .material-icons {
+  font-size: 24px;
+  margin-right: 5px;
+  color: #000;
+}
+
+.cart-link {
+  font-size: 16px;
+  color: #000;
+  text-decoration: none;
+  margin-right: 20px;
+}
+
+.cart-items {
+  border-radius: 5px;
+  margin-left: 5px;
+}
+.category-filter {
+  background-color: #f4f4f4;
+
+  border: none;
+  padding: 5px 15px;
+  margin-bottom: 30px;
+}
+
+
+

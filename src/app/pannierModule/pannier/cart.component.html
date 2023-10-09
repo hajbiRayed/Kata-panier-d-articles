@@ -1,0 +1,41 @@
+<div class="cart-header ml-3">
+  <div class="m-2 p-2">
+  <a  role="button" routerLink="/"><i class="material-icons">arrow_back  </i></a>
+</div>
+  <div *ngIf="cartItems.length > 0" class="container-fluid">
+    <h3>Produits sélectionnés</h3>
+    <ul>
+      <li *ngFor="let item of cartItems">
+        <div class="row">
+          <div class="col-sm-12 col-md-2 col-lg-2">
+            {{item.product.productName}}
+          </div>
+          <div class="col-sm-12 col-md-1 col-lg-1">
+            Qte: {{item.quantity}}
+          </div>
+          <div class="col-sm-12 col-md-2 col-lg-2">
+            taxes: {{taxService.getTax(item)}} {{" "}} {{unite}}
+          </div>
+          <div class="col-sm-12 col-md-3 col-lg-3">
+            Prix unitaire HT: {{item.product.price}} {{" "}} {{unite}}
+          </div>
+          <div class="col-sm-12 col-md-3 col-lg-3">
+            Prix unitaire TTC: {{item.priceWithTax}} {{" "}} {{unite}}
+          </div>
+          <div class="col-sm-12 col-md-1 col-lg-1">
+            <em role="button" mat-raised-button (click)="removeFromCart(item)"> <i class="material-icons text-danger">delete_forever  </i></em>
+          </div>
+        </div>
+        <hr/>
+      </li>
+    </ul>
+    <p>
+      TOTAL Taxes: {{taxService.getTotalTax(cartItems)}} {{" "}} {{unite}}
+      <br/>
+      TOTAL TTC: {{taxService.getTotalTTC(cartItems)}} {{" "}} {{unite}}
+    </p>
+  </div>
+
+  <!-- Affiche un message lorsque le panier est vide -->
+  <div class="cart-empty d-flex align-items-center justify-content-center vh-100" *ngIf="cartItems.length === 0">Votre panier est vide.</div>
+</div>

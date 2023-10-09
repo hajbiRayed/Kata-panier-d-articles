@@ -1,0 +1,37 @@
+<div class="product-card" style="padding: 10px">
+  <div class="box-part text-center">
+                        
+    {{product.productName}}
+    
+<div class="title">
+<h6>  Catégorie: {{product.category}}</h6>
+</div>
+    
+<div class="text">
+<span>  Prix: {{ taxService.getPriceWithTax(product) }} {{" "}} {{unite}}</span>
+</div>
+    
+<div >
+<form [formGroup]="productForm">
+  <div *ngIf="product.quantity !== 0; else notAvailableBlock" >
+   <div class="form-group row">
+    <label class="col-sm-6 col-form-label pt-2" for="quantity">Quantité</label>
+    <div class="col-sm-5 pl-0">
+      <input type="number" class="form-control form-control-sm" id="quantity" min="1" formControlName="quantity">
+   
+    </div>
+  </div> 
+    <div *ngIf="productForm?.get('quantity')?.invalid" class="text-danger">
+      {{ getQuantityErrorMessage() }}
+    </div>
+  </div>
+  <ng-template #notAvailableBlock>non disponible</ng-template>
+</form>
+<button class="btn btn-primary btn-sm ml-auto" [disabled]="product.quantity === 0 || productForm.get('quantity')?.invalid"
+        (click)="addToCart(product, productForm.get('quantity')?.value)">Ajouter</button>
+</div>
+</div>
+
+  
+ 
+</div>
